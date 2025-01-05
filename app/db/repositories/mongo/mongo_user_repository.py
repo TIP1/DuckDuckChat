@@ -1,17 +1,17 @@
 from bson import ObjectId
+import asyncio
 
 from app.db.repositories.base.base_chat_repository import BaseChatRepository
 from app.db.repositories.base.base_user_repository import BaseUserRepository
-import asyncio
-
+from app.db.models.core.user import UserModel
 
 class MongoUserRepository(BaseUserRepository):
 
     def __init__(self, db_client):
         self.collection = db_client.DuckDuckChat_Atlas.users
 
-    async def add_user(self, user: dict):
-        result = await self.collection.insert_one(user)
+    async def add_user(self, user: UserModel):
+        result = await self.collection.insert_one(user.dict())
         return str(result.inserted_id)
 
     async def get_user(self, user_id: str):

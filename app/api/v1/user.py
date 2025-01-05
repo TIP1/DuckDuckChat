@@ -5,6 +5,7 @@ from fastapi import FastAPI, APIRouter
 
 from app.db.repositories.repository_factory import RepositoryFactory
 from app.services.user_service import UserService
+from app.db.models.core.user import UserModel
 
 
 user_router = APIRouter()
@@ -14,7 +15,7 @@ user_service = UserService(user_repository)
 
 @user_router.post("/create")
 async def add_user(user_data: dict):
-    result = await user_service.add_user(user_data)
+    result = await user_service.add_user(UserModel(**user_data))
     return {"message": f"New user {result} added successfully!"}
 
 
