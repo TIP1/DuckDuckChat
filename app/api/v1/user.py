@@ -22,6 +22,5 @@ async def add_user(user_data: dict):
 @user_router.get("/{user_id}")
 async def get_user(user_id: str):
     user = await user_service.get_user(user_id)
-    await asyncio.sleep(5)
     return {"GET User": f"{user}"}
 

@@ -5,6 +5,7 @@ from app.db.repositories.base.base_chat_repository import BaseChatRepository
 from app.db.repositories.base.base_user_repository import BaseUserRepository
 from app.db.models.core.user import UserModel
 
+
 class MongoUserRepository(BaseUserRepository):
 
     def __init__(self, db_client):
