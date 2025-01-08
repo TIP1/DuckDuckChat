@@ -1,4 +1,4 @@
-from app.db.repositories.base.base_chat_repository import BaseChatRepository
+from app.db.repositories.base.base_group_repository import BaseChatRepository
 from app.db.models.core.chat import GroupModel
 
 
