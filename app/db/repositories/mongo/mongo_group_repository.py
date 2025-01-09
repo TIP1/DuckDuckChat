@@ -1,3 +1,5 @@
+from bson import ObjectId
+
 from app.db.models.core.group import GroupModel
 
 from app.db.repositories.base.base_group_repository import BaseGroupRepository
@@ -13,8 +15,8 @@ class MongoGroupRepository(BaseGroupRepository):
         return result
 
     async def get_group(self, group_id) -> GroupModel:
-        group = await self.collection.find_one({"group_id": group_id})
-        return GroupModel(**group)
+        group = await self.collection.find_one({"_id": ObjectId(group_id)})
+        return group
 
     async def update_group(self, group_id) -> bool:
         pass
