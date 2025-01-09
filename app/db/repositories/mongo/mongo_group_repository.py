@@ -1,4 +1,4 @@
-from app.db.models.core.chat import GroupModel
+from app.db.models.core.group import GroupModel
 
 from app.db.repositories.base.base_group_repository import BaseGroupRepository
 
@@ -9,7 +9,7 @@ class MongoGroupRepository(BaseGroupRepository):
         self.collection = db_client.DuckDuckChat_Atlas.groups
 
     async def create_group(self, group: GroupModel):
-        result = await self.collection.insert_one({group.dict()})
+        result = await self.collection.insert_one(group.dict())
         return result
 
     async def get_group(self, group_id) -> GroupModel:

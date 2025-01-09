@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from app.api.v1.user import user_router
+from app.api.v1.group import group_router
 from contextlib import asynccontextmanager
 
 
@@ -20,6 +21,7 @@ app = FastAPI(
 )
 
 app.include_router(user_router, prefix="/users")
+app.include_router(group_router, prefix="/groups")
 
 # if __name__ == "__main__":
 #     import uvicorn

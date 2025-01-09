@@ -5,6 +5,8 @@ from dotenv import load_dotenv
 from motor.motor_asyncio import AsyncIOMotorClient
 
 from app.db.repositories.mongo.mongo_user_repository import MongoUserRepository
+from app.db.repositories.mongo.mongo_group_repository import MongoGroupRepository
+
 
 load_dotenv()
 
@@ -23,6 +25,13 @@ class RepositoryFactory:
             return MongoUserRepository(client)
 
     @staticmethod
-    def get_chat_repository():
-        pass
+    def get_group_repository():
+
+        db_type = os.getenv("DATABASE")
+
+        if db_type == "MONGODB":
+            uri = os.getenv("URI_MONGO_DB")
+            client = AsyncIOMotorClient(uri)
+
+            return MongoGroupRepository(client)
 
