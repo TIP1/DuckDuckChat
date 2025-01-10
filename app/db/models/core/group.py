@@ -2,12 +2,12 @@ from app.db.models.base.abstract.base_model import SwitchModelHub
 from typing import Optional, List
 
 
-class GroupModel(SwitchModelHub.get_base_model()):
+class GroupModel(SwitchModelHub.get_group_model()):
 
     group_id: Optional[str]
     group_name: str
     group_owner_id: str
-    group_admins: List[str]
+    group_admins: Optional[List[str]]
     group_members: List[str]
 
 

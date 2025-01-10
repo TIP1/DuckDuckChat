@@ -1,7 +1,7 @@
 import os
 from dotenv import load_dotenv
 
-from app.db.models.base.mongo.base_model import MongoBaseModel
+from app.db.models.base.mongo.models import MongoBaseModel, MongoGroup
 
 load_dotenv()
 
@@ -17,5 +17,9 @@ class SwitchModelHub:
             return MongoBaseModel
 
     @staticmethod
-    def get_another_model():
-        pass
+    def get_group_model():
+
+        db_type = os.getenv("DATABASE")
+
+        if db_type == "MONGODB":
+            return MongoGroup

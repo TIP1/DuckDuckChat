@@ -1,4 +1,5 @@
 from pydantic import BaseModel, Field, field_validator
+from typing import ClassVar
 from bson import ObjectId
 from typing import Optional, Union
 import datetime
@@ -20,9 +21,12 @@ class MongoBaseModel(BaseModel):
         json_encoders = {ObjectId: str}
 
 
-class MongoBaseModelRequest(MongoBaseModel):
-    id: Optional[str] = Field(alias="_id", default=None)
+class MongoGroup(MongoBaseModel):
+    id: Optional[Union[str]] = Field(exclude=True)
+    group_id: Optional[Union[str]] = Field(default=None)
 
+    def __init__(self, **data):
+        if "_id" in data:
+            data["group_id"] = str(data["_id"])
+        super().__init__(**data)
 
-# class MongoBaseModelResponse(MongoBaseModel):
-#     id: Optional[ObjectId] = Field(alias="_id", default=None)
