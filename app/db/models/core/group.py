@@ -1,10 +1,11 @@
 from app.db.models.base.abstract.base_model import SwitchModelHub
 from typing import Optional, List
+from pydantic import Field
 
 
 class GroupModel(SwitchModelHub.get_group_model()):
 
-    group_id: Optional[str]
+    # group_id: Optional[str]
     group_name: str
     group_owner_id: str
     group_admins: Optional[List[str]]

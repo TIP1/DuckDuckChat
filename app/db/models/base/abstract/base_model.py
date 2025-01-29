@@ -23,3 +23,4 @@ class SwitchModelHub:
 
         if db_type == "MONGODB":
             return MongoGroup
+

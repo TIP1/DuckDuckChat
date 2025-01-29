@@ -2,7 +2,6 @@ from fastapi import FastAPI, APIRouter
 
 from app.db.repositories.repository_factory import RepositoryFactory
 from app.services.group_service import GroupService
-from app.db.models.core.group import GroupModel
 
 
 group_router = APIRouter()
@@ -12,7 +11,7 @@ group_service = GroupService(group_repository)
 
 @group_router.post("/create")
 async def add_group(group_data: dict):
-    result = await group_service.create_group(GroupModel(**group_data))
+    result = await group_service.create_group(group_data)
     return {"message": f"New group {result} added successfully!"}
 
 
