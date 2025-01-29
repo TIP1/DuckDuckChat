@@ -1,5 +1,5 @@
 from app.db.repositories.base.base_user_repository import BaseUserRepository
-from app.db.models.core.user import UserModel
+# from app.db.models.core.user import UserModel
 
 
 class UserService:
@@ -7,12 +7,12 @@ class UserService:
     def __init__(self, repository: BaseUserRepository):
         self.repository = repository
 
-    async def add_user(self, user: UserModel):
+    async def add_user(self, user):
         return await self.repository.add_user(user=user)
 
     async def get_user(self, user_id: str):
         user = await self.repository.get_user(user_id)
-        return UserModel(**user)
+        return user
 
     async def update_user(self, user_data):  # UPDATE
         pass

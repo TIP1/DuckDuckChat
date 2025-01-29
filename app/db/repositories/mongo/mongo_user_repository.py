@@ -2,7 +2,8 @@ from bson import ObjectId
 import asyncio
 
 from app.db.repositories.base.base_user_repository import BaseUserRepository
-from app.db.models.core.user import UserModel
+# from app.db.models.core.user import UserModel
+from pydantic import BaseModel
 
 
 class MongoUserRepository(BaseUserRepository):
@@ -10,7 +11,7 @@ class MongoUserRepository(BaseUserRepository):
     def __init__(self, db_client):
         self.collection = db_client.DuckDuckChat_Atlas.users
 
-    async def add_user(self, user: UserModel):
+    async def add_user(self, user: BaseModel):
         result = await self.collection.insert_one(user.dict())
         return str(result.inserted_id)
 
